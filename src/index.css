@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* SaaS Card Base Styling */
+.card-saas {
+  @apply bg-slate-900/80 border border-slate-800/90 rounded-xl p-5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-slate-700/80;
+}
+
+.badge {
+  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+}
+
+/* Custom gauge stroke dash array animation */
+@keyframes dash {
+  from {
+    stroke-dashoffset: 283;
+  }
+}
+
+.animate-gauge {
+  animation: dash 1.2s ease-out forwards;
+}
