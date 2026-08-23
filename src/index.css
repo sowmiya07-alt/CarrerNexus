@@ -3,43 +3,105 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-main: #090d16;
+    --card-bg: rgba(15, 23, 42, 0.75);
+    --border-card: rgba(30, 41, 59, 0.8);
+  }
+
   body {
-    @apply bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white;
+    background-color: #070a12;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.06) 0px, transparent 50%);
+    @apply text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white min-h-screen;
   }
 }
 
-/* Custom scrollbar */
+/* Glassmorphism & SaaS Card Utility Classes */
+.glass-card {
+  background: rgba(13, 19, 34, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 14px 40px -10px rgba(0, 0, 0, 0.6);
+}
+
+.glass-card-interactive {
+  @apply glass-card cursor-pointer hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.glass-input {
+  background: rgba(8, 12, 22, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  border-radius: 0.625rem;
+  transition: all 0.2s ease;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: #38bdf8;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+}
+
+/* Custom Styled Range Sliders */
+input[type=range] {
+  -webkit-appearance: none;
+  background: rgba(15, 23, 42, 0.9);
+  border-radius: 8px;
+  height: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #0284c7;
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
+
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: #070a12;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #1e293b;
   border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
   background: #334155;
 }
 
-/* SaaS Card Base Styling */
-.card-saas {
-  @apply bg-slate-900/80 border border-slate-800/90 rounded-xl p-5 shadow-lg backdrop-blur-sm transition-all duration-200 hover:border-slate-700/80;
+/* Subtle Gradient Glow Animations */
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
 }
 
-.badge {
-  @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-}
-
-/* Custom gauge stroke dash array animation */
-@keyframes dash {
-  from {
-    stroke-dashoffset: 283;
-  }
-}
-
-.animate-gauge {
-  animation: dash 1.2s ease-out forwards;
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s infinite ease-in-out;
 }
